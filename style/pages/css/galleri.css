@@ -38,15 +38,15 @@ div#content main section {
       grid-template-rows: repeat(6, minmax(50px, 150px));
 }
 
-div#content main section div video {
+div#content main section figure video {
   width: 100%;
 }
 
-div#content main section div img {
+div#content main section figure img {
   width: 100%;
 }
 
-div#content main section div:nth-child(2) {
+div#content main section figure:nth-child(2) {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
@@ -55,13 +55,13 @@ div#content main section div:nth-child(2) {
   grid-row: 1/4;
 }
 
-div#content main section div:nth-child(3) {
+div#content main section figure:nth-child(3) {
   -ms-grid-row: 2;
   -ms-grid-row-span: 3;
   grid-row: 2/5;
 }
 
-div#content main section div:nth-child(4) {
+div#content main section figure:nth-child(4) {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
@@ -70,7 +70,7 @@ div#content main section div:nth-child(4) {
   grid-row: 4/7;
 }
 
-div#content main section div:nth-child(6) {
+div#content main section figure:nth-child(6) {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-column: 1/2;
