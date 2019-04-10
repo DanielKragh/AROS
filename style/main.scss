@@ -48,6 +48,7 @@ body {
     font-family: $sans;
 
     #wrapper {
+        overflow: hidden;
         display: grid;
         grid-template-columns: 1fr 9fr 1fr;
         grid-template-rows: auto;
@@ -66,6 +67,7 @@ body {
             display: grid;
             grid-template-columns: 1fr 9fr 1fr;
             grid-template-rows: 80px auto;
+            
 
             header {
                 grid-column: 2 / 3;
@@ -83,23 +85,47 @@ body {
                     ul {
                         display: flex;
                         justify-content: space-between;
+
                         @media #{$res-xsmall} {
-                            display: none;
+                            position: absolute;
+                            display: block;
+                            top: -20px;
+                            left: 150%;
+                            background-color: rgba(37, 37, 37, 0.945);
+                            width: 124%;
+                            transition: .5s;
+                            z-index: 1;
+                            border-bottom: $orange solid 3px;
+
+                            &.showNavbar {
+                                left: -12%;
+
+                            }
                         }
+
                         li {
                             width: 100%;
+                            height: 100%;
                             list-style: none;
                             text-align: center;
                             align-self: center;
 
+                           
+
                             a {
                                 display: block;
                                 text-decoration: none;
+                                height: 100%;
+                                padding: 11%;
                                 color: $light;
                                 font-family: $sans;
                                 font-size: $xsFont;
                                 transition: 0.5s;
+                                @media #{$res-xsmall} {
+                                    font-size: $smFont;
+                                    padding:5% 0;
 
+                                }
                                 &:hover {
                                     color: $orange;
 
@@ -114,6 +140,7 @@ body {
                         top: 5px;
                         right: 10px;
                         display: none;
+                        z-index: 1;
 
                         @media #{$res-xsmall} {
                             display: block;
