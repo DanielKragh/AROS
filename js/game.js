@@ -13,9 +13,13 @@ var JumpStartPos = 0;
 var JumpAcc = 1;
 var CurrentJumpAcc = 0;
 
+var Enemys;
+
 $(function(){
     Boy = $("#Boy");
+    Enemys = $(".enemy");
     Platform = $("#Platform");
+    // Boy.position().top;
     RegisterKeyEvents();
     function Loop(){
         FallDown();
@@ -23,6 +27,7 @@ $(function(){
         requestAnimationFrame(Loop);
         $("#JumpingUp").text(jumpingUp);
         $("#FallingDown").text(fallingDown);
+        EnemyLoop();
     }
     Loop();
 });
@@ -48,12 +53,7 @@ function FallDown(){
 function RisingUp(){
     if(fallingDown || !jumpingUp)
         return;
-    // if(Boy.position().top < JumpStartPos-jumpHeight)
-    // {
-    //     jumpingUp = false;
-    //     fallingDown = true;
-    //     return;
-    // }
+    
     jumpingUp = true;
     if(CurrentJumpAcc < 0){
         jumpingUp = false;
@@ -69,8 +69,9 @@ function RisingUp(){
 function RegisterKeyEvents(){
     $(document).on("keydown", function(e){
         //Spacebar
-        if(e.keyCode == 32){
+        if(e.keyCode == 32 || e.keyCode == 38 || e.keyCode == 87){
             Jump();
+            return false;
         }
     });
     $(document).on("click", function(){
@@ -85,4 +86,10 @@ function Jump(){
     jumpingUp = true;
     CurrentJumpAcc = JumpAcc;
     JumpStartPos = Boy.position().top;
+}
+
+function EnemyLoop(){
+    Enemys.each(function(){
+        $(this).css("transform", "rotate(20deg)");
+    });
 }

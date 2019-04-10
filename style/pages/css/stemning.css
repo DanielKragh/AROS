@@ -11,14 +11,14 @@
   left: 5%;
 }
 
-#content{
+#content {
   height: 800px;
 }
 
 #Platform {
   width: 100%;
   height: 10%;
-  background-color: black;
+  background-color: #6e6e6e;
   position: absolute;
   top: 90%;
 }
