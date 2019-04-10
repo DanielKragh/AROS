@@ -226,13 +226,19 @@ div#content aside div.slide-wrapper {
     grid-column: 1/2;
     -ms-grid-columns: 1fr 4fr 1fr;
         grid-template-columns: 1fr 4fr 1fr;
-    height: 400px;
-    padding-bottom: 130px;
+    -ms-grid-rows: auto auto 200px;
+        grid-template-rows: auto auto 200px;
   }
 }
 
 div#content aside div.slide-wrapper .slider {
   position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+  div#content aside div.slide-wrapper .slider {
+    padding-top: 15%;
+  }
 }
 
 div#content aside div.slide-wrapper .slider div.anmeld {
@@ -265,6 +271,7 @@ div#content aside div.slide-wrapper .slider div.anmeld p.italy {
   font-family: "Georgia", serif;
   font-style: italic;
   text-align: right;
+  padding-top: 5px;
 }
 
 div#content aside div.slide-wrapper hr {
@@ -301,6 +308,9 @@ div#content aside div.slide-wrapper svg {
 @media only screen and (max-width: 600px) {
   div#content aside div.slide-wrapper svg {
     width: 20px;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
   }
 }
 

@@ -195,12 +195,14 @@ div#content {
             @media #{$res-xsmall} {
                 grid-column: 1/2;
                 grid-template-columns: 1fr 4fr 1fr;
-                height: 400px;
-                padding-bottom: 130px;
+                grid-template-rows: auto auto 200px;
             }
 
             .slider {
                 position: relative;
+                @media #{$res-xsmall} {
+                    padding-top: 15%;
+                }
 
                 div.anmeld {
                     width: 100%;
@@ -231,6 +233,7 @@ div#content {
                         font-family: $serif;
                         font-style: italic;
                         text-align: right;
+                        padding-top: 5px;
                     }
                 }
             }
@@ -260,6 +263,7 @@ div#content {
 
                 @media #{$res-xsmall} {
                     width: 20px;
+                    align-self: center;
                 }
 
                 &:hover {
