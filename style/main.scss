@@ -1,0 +1,259 @@
+@import "variables";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(107, 107, 107);
+    border-radius: 5px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(156, 156, 156);
+}
+
+h1,
+h2 {
+    font-family: $serif;
+    color: $light;
+}
+
+p {
+    color: $light;
+}
+
+.blue-circle {
+    opacity: 0.5;
+}
+
+body {
+    background-color: black;
+    font-family: $sans;
+
+    #wrapper {
+        display: grid;
+        grid-template-columns: 1fr 9fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "header header header"
+            "content content content"
+            "aside aside aside"
+            "footer footer footer";
+
+        #content {
+            grid-area: content;
+        }
+
+        div#header-wrapper {
+            grid-area: header;
+            display: grid;
+            grid-template-columns: 1fr 9fr 1fr;
+            grid-template-rows: 80px auto;
+
+            header {
+                grid-column: 2 / 3;
+
+                nav {
+                    display: grid;
+                    grid-template-columns: 2fr 4fr;
+                    margin: 20px 0;
+                    position: relative;
+
+                    img {
+                        align-self: center;
+                    }
+
+                    ul {
+                        display: flex;
+                        justify-content: space-between;
+                        @media #{$res-xsmall} {
+                            display: none;
+                        }
+                        li {
+                            width: 100%;
+                            list-style: none;
+                            text-align: center;
+                            align-self: center;
+
+                            a {
+                                display: block;
+                                text-decoration: none;
+                                color: $light;
+                                font-family: $sans;
+                                font-size: $xsFont;
+                                transition: 0.5s;
+
+                                &:hover {
+                                    color: $orange;
+
+                                }
+                            }
+                        }
+                    }
+
+                    div {
+                        width: 40px;
+                        position: absolute;
+                        top: 5px;
+                        right: 10px;
+                        display: none;
+
+                        @media #{$res-xsmall} {
+                            display: block;
+                        }
+
+                        svg.burger {
+                            width: 100%;
+                            cursor: pointer;
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+        footer {
+            height: 200px;
+            grid-area: footer;
+            background-color: $gray;
+            display: grid;
+            grid-template-columns: 1fr 3fr 3fr 3fr 1fr;
+            grid-template-areas: ". address social maps .";
+
+            @media #{$res-xsmall} {
+                grid-template-columns: 3fr 3fr;
+                grid-template-areas: "address social";
+            }
+
+            div#address {
+                grid-area: address;
+                margin: 30px 20px;
+
+                address {
+                    p {
+                        &.bold {
+                            font-weight: 900;
+                        }
+
+                        &.tel {
+                            a {
+                                text-decoration: none;
+                                color: rgb(96, 96, 182);
+                            }
+                        }
+                    }
+
+                    hr {
+                        border: none;
+                        background-color: gray;
+                        height: 2px;
+                        margin: 10px 0;
+                    }
+                }
+            }
+
+            div#social {
+                grid-area: social;
+                margin: 30px 20px;
+
+                p {
+                    &.bold {
+                        font-weight: 900;
+                    }
+                }
+
+                hr {
+                    border: none;
+                    background-color: gray;
+                    height: 2px;
+                    margin: 10px 0;
+                }
+
+                i {
+                    color: $light;
+                    font-size: 35px;
+                    padding: 5px;
+                    transition: 0.5s;
+
+                    &.fa-facebook-square {
+                        &:hover {
+                            color: #4267b2;
+                        }
+                    }
+
+                    &.fa-twitter-square {
+                        &:hover {
+                            color: #1f9fed;
+                        }
+                    }
+
+                    &.fa-instagram {
+                        &:hover {
+                            color: #ffae00;
+                        }
+                    }
+
+                    &.fa-google-plus-square {
+                        &:hover {
+                            color: #dc4a38;
+                        }
+                    }
+
+                    &.fa-youtube-square {
+                        &:hover {
+                            color: #f80000;
+                        }
+                    }
+                }
+            }
+
+            div#maps {
+                grid-area: maps;
+
+                @media #{$res-xsmall} {
+                    display: none;
+                }
+
+                iframe {
+                    height: 200px;
+                    width: 100%;
+                    // frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    border: none;
+
+                    .mapouter {
+                        position: relative;
+                        text-align: right;
+                        height: 200px;
+                        width: 100%;
+                    }
+
+                    .gmap_canvas {
+                        overflow: hidden;
+                        background: none;
+                        height: 200px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+}
