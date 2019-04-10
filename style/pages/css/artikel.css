@@ -1,0 +1,235 @@
+figure img {
+  width: 100%;
+}
+
+main {
+  -ms-grid-columns: 1fr 9fr 1fr;
+      grid-template-columns: 1fr 9fr 1fr;
+  display: -ms-grid;
+  display: grid;
+}
+
+main figure {
+  width: 40%;
+  margin: 0 auto;
+}
+
+main section {
+  margin-top: 75px;
+  margin-bottom: 100px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+@media only screen and (max-width: 800px) {
+  main section {
+    margin-bottom: 0px;
+  }
+}
+
+main section time {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+  color: #a1a1a1;
+  margin: 0 auto;
+}
+
+main section h1 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+  margin: 0 auto;
+  text-align: center;
+}
+
+main section .title {
+  margin-bottom: 20px;
+}
+
+main section .title h3 {
+  font-style: italic;
+}
+
+main section .text, main section .img {
+  width: 80%;
+}
+
+@media only screen and (max-width: 800px) {
+  main section .text, main section .img {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  main section .img {
+    margin-bottom: 25px;
+  }
+}
+
+main section .img figure {
+  position: relative;
+  max-width: 175px;
+}
+
+@media only screen and (max-width: 800px) {
+  main section .img figure {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  main section .img figure {
+    width: 55%;
+  }
+}
+
+main section .img figure svg {
+  position: absolute;
+  z-index: -1;
+  width: 110%;
+  top: -40%;
+  left: 30%;
+}
+
+main section h3 {
+  color: #a1a1a1;
+  font-weight: normal;
+}
+
+@media only screen and (max-width: 800px) {
+  main section#first {
+    margin-top: 0px;
+  }
+}
+
+main section#first > div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 800px) {
+  main section#first > div {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1/3;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  main section#first > div {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  main section#first .img {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+  }
+}
+
+main section.grey {
+  background-color: #1B1B1B;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+  -ms-grid-columns: 1fr 9fr 1fr;
+      grid-template-columns: 1fr 9fr 1fr;
+  padding: 50px 0;
+}
+
+main section.grey > div {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 800px) {
+  main section.grey > div {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  main section.grey > div .left, main section.grey > div .right {
+    width: 100%;
+  }
+}
+
+main section.grey figure {
+  position: relative;
+  z-index: 0;
+  max-width: 175px;
+}
+
+main section.grey figure svg {
+  position: absolute;
+  z-index: -1;
+  width: 130%;
+  top: -30%;
+  left: -30%;
+}
+
+aside {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 9fr 1fr;
+      grid-template-columns: 1fr 9fr 1fr;
+}
+
+aside figure {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+@media only screen and (max-width: 600px) {
+  aside {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+p {
+  color: #a1a1a1;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+hr {
+  height: 3%;
+  border: none;
+  background-color: #FF8800;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+  margin: 0 auto;
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+/*# sourceMappingURL=artikel.css.map */
