@@ -101,6 +101,7 @@ body #wrapper div#header-wrapper header nav a svg {
       -ms-grid-row-align: center;
       align-self: center;
   width: 100px;
+  cursor: pointer;
 }
 
 body #wrapper div#header-wrapper header nav ul {
