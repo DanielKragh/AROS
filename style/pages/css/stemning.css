@@ -12,7 +12,8 @@
 }
 
 #content {
-  height: 800px;
+  height: 300px;
+  position: relative;
 }
 
 #Platform {
@@ -21,5 +22,12 @@
   background-color: #6e6e6e;
   position: absolute;
   top: 90%;
+}
+
+.enemy {
+  width: 5%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 /*# sourceMappingURL=stemning.css.map */

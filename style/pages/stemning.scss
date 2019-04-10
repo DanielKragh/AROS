@@ -11,7 +11,8 @@
 }
 
 #content{
-    height: 800px;
+    height: 300px;
+    position: relative;
 }
 
 #Platform {
@@ -20,4 +21,11 @@
     background-color: rgb(110, 110, 110);
     position: absolute;
     top: 90%;
+}
+
+.enemy {
+    width: 5%;
+    position: absolute;
+    left: 0;
+    top: 0;
 }

@@ -14,14 +14,16 @@ var JumpAcc = 1;
 var CurrentJumpAcc = 0;
 
 var Enemys;
+var EnemyRotationSpeed = 20;
 
-$(function(){
+$(function () {
     Boy = $("#Boy");
     Enemys = $(".enemy");
     Platform = $("#Platform");
     // Boy.position().top;
     RegisterKeyEvents();
-    function Loop(){
+    SpawnEnemy();
+    function Loop() {
         FallDown();
         RisingUp();
         requestAnimationFrame(Loop);
@@ -32,13 +34,12 @@ $(function(){
     Loop();
 });
 
-function FallDown(){
-    if(jumpingUp)
+function FallDown() {
+    if (jumpingUp)
         return
-    
+
     var onGround = checkCollisions(Boy, Platform);
-    if(onGround)
-    {
+    if (onGround) {
         fallingDown = false;
         jumpingUp = false;
         return;
@@ -47,15 +48,15 @@ function FallDown(){
     fallingDown = true;
     CurrentJumpAcc += 0.03;
     BoyY += BoyFallSpeed * CurrentJumpAcc;
-    Boy.css("transform", "translate3d(0,"+BoyY+"%,0)");
+    Boy.css("transform", "translate3d(0," + BoyY + "%,0)");
 }
 
-function RisingUp(){
-    if(fallingDown || !jumpingUp)
+function RisingUp() {
+    if (fallingDown || !jumpingUp)
         return;
-    
+
     jumpingUp = true;
-    if(CurrentJumpAcc < 0){
+    if (CurrentJumpAcc < 0) {
         jumpingUp = false;
         fallingDown = true;
         CurrentJumpAcc = 0;
@@ -63,24 +64,24 @@ function RisingUp(){
     }
     CurrentJumpAcc -= 0.030;
     BoyY -= BoyFallSpeed * CurrentJumpAcc;
-    Boy.css("transform", "translate3d(0,"+BoyY+"%,0)");
+    Boy.css("transform", "translate3d(0," + BoyY + "%,0)");
 }
 
-function RegisterKeyEvents(){
-    $(document).on("keydown", function(e){
+function RegisterKeyEvents() {
+    $(document).on("keydown", function (e) {
         //Spacebar
-        if(e.keyCode == 32 || e.keyCode == 38 || e.keyCode == 87){
+        if (e.keyCode == 32 || e.keyCode == 38 || e.keyCode == 87) {
             Jump();
             return false;
         }
     });
-    $(document).on("click", function(){
+    $(document).on("click", function () {
         Jump();
     });
 }
 
-function Jump(){
-    if(fallingDown || jumpingUp)
+function Jump() {
+    if (fallingDown || jumpingUp)
         return;
 
     jumpingUp = true;
@@ -88,8 +89,39 @@ function Jump(){
     JumpStartPos = Boy.position().top;
 }
 
-function EnemyLoop(){
-    Enemys.each(function(){
-        $(this).css("transform", "rotate(20deg)");
+function EnemyLoop() {
+    Enemys.each(function () {
+        rotate($(this));
+        MoveEnemy($(this));
+        DeleteIfOutside($(this));
     });
+}
+
+function MoveEnemy(element){
+    element.css("left", element.position().left+1)
+}
+
+function DeleteIfOutside(element){
+    if(element.position().left+element.width() <= 0){
+        element.remove();
+    }
+}
+
+function rotate(element){
+    var rotation = 0;
+    if (element.data("rotation")) {
+        rotation = element.data("rotation");
+    }
+    rotation -= EnemyRotationSpeed;
+    element.data("rotation", rotation);
+    element.css("transform", "rotate(" + rotation + "deg)");
+}
+
+function SpawnEnemy(){
+    var enemyTemplate = $("<img class='enemy' src='resurser/img/hoved1Web.png'/>");
+    $("#content").append(enemyTemplate);
+    console.log(enemyTemplate);
+    enemyTemplate.css("left", $("#content").width()-enemyTemplate.width());
+    enemyTemplate.css("top", 230)
+    Enemys = $(".enemy");
 }
