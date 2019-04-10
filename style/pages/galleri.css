@@ -5,6 +5,27 @@ div#content main {
       grid-template-columns: 1fr 9fr 1fr;
 }
 
+div#content main h1 {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+div#content main hr {
+  height: 3%;
+  border: none;
+  background-color: #FF8800;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  margin: 0 auto;
+  width: 100px;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
 div#content main section {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
@@ -13,8 +34,8 @@ div#content main section {
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: (300px)[6];
-      grid-template-rows: repeat(6, 300px);
+  -ms-grid-rows: (minmax(50px, 150px))[6];
+      grid-template-rows: repeat(6, minmax(50px, 150px));
 }
 
 div#content main section div video {
@@ -23,5 +44,38 @@ div#content main section div video {
 
 div#content main section div img {
   width: 100%;
+}
+
+div#content main section div:nth-child(2) {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 3;
+  grid-row: 1/4;
+}
+
+div#content main section div:nth-child(3) {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 3;
+  grid-row: 2/5;
+}
+
+div#content main section div:nth-child(4) {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 3;
+  grid-row: 4/7;
+}
+
+div#content main section div:nth-child(6) {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 6;
+  -ms-grid-row-span: 3;
+  grid-row: 6/9;
 }
 /*# sourceMappingURL=galleri.css.map */
