@@ -91,10 +91,16 @@ body #wrapper div#header-wrapper header nav {
   position: relative;
 }
 
-body #wrapper div#header-wrapper header nav img {
+body #wrapper div#header-wrapper header nav a {
+  display: -ms-grid;
+  display: grid;
+}
+
+body #wrapper div#header-wrapper header nav a svg {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  width: 100px;
 }
 
 body #wrapper div#header-wrapper header nav ul {

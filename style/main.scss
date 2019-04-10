@@ -77,10 +77,14 @@ body {
                     grid-template-columns: 2fr 4fr;
                     margin: 20px 0;
                     position: relative;
-
-                    img {
+                    a{
+                        display: grid;
+                       svg {
                         align-self: center;
+                        width: 100px;
+                        }  
                     }
+                   
 
                     ul {
                         display: flex;
