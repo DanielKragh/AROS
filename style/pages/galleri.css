@@ -1,0 +1,27 @@
+div#content main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 9fr 1fr;
+      grid-template-columns: 1fr 9fr 1fr;
+}
+
+div#content main section {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: (300px)[6];
+      grid-template-rows: repeat(6, 300px);
+}
+
+div#content main section div video {
+  width: 100%;
+}
+
+div#content main section div img {
+  width: 100%;
+}
+/*# sourceMappingURL=galleri.css.map */
