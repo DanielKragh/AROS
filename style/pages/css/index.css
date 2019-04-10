@@ -117,7 +117,7 @@ div#content main section#om-AROS div h2 {
 
 div#content main section#om-AROS div p {
   font-size: 16px;
-  color: #848484;
+  color: #a1a1a1;
   line-height: 1.5;
 }
 
@@ -184,7 +184,7 @@ div#content main section#info div div h3 {
 }
 
 div#content main section#info div div tbody tr td {
-  border-bottom: 2px solid #848484;
+  border-bottom: 2px solid #a1a1a1;
   color: #e0e0e0;
   padding: 20px 0 10px 0;
 }
@@ -264,7 +264,7 @@ div#content aside div.slide-wrapper .slider div.anmeld h4 {
 
 div#content aside div.slide-wrapper .slider div.anmeld p {
   font-size: 16px;
-  color: #848484;
+  color: #a1a1a1;
 }
 
 div#content aside div.slide-wrapper .slider div.anmeld p.italy {
