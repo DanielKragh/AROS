@@ -17,6 +17,9 @@ main  {
         display: grid;
         grid-template-columns: 1fr 1fr;  
         grid-column: 2/3;
+        @media #{$res-small}{              
+            margin-bottom: 0px;
+        }
         time {
             grid-column: 1 / 3;
             color: $pColor;
@@ -25,13 +28,35 @@ main  {
         h1 {            
             grid-column: 1 / 3;
             margin: 0 auto;
+            text-align: center;
         }
-        .left, .right {              
+        .title {
+            margin-bottom: 20px;
+            h3 {
+                font-style: italic;
+            }
+        }
+        .text, .img {              
             width: 80%; 
+            
+            @media #{$res-small}{      
+                width: 100%;
+            }
         }
-        .right {
+        
+        .img {
+            @media #{$res-small}{     
+                margin-bottom: 25px;
+            }
             figure {
                 position: relative;
+                max-width: 175px;
+                @media #{$res-small}{     
+                    width: 30%;
+                }
+                @media #{$res-xsmall}{     
+                    width: 55%;
+                }
                 svg {
                     position: absolute;
                     z-index: -1;
@@ -41,8 +66,34 @@ main  {
                 }
             }
         }
+        h3 {
+            color: $pColor;
+            font-weight: normal;
+        }
 
     } 
+    section#first {
+        @media #{$res-small}{ 
+            margin-top: 0px;
+        }
+        &>div {
+            @media #{$res-small}{      
+                grid-column: 1/3;
+            }
+            display: grid;
+            grid-column: 1/3;
+            grid-template-columns: 1fr 1fr;
+            @media #{$res-small}{
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+        }
+        .img {            
+            @media #{$res-small}{             
+                grid-row: 1/2;
+            }
+        }
+    }
     section.grey {
         background-color: $gray;
         grid-column: 1/4;
@@ -51,11 +102,11 @@ main  {
             grid-column: 2/3;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            @media #{$res-xsmall}{                
+            @media #{$res-small}{                
                 grid-template-columns: 1fr;
             }
             .left, .right {
-                @media #{$res-xsmall}{          
+                @media #{$res-small}{          
                     width: 100%;
                 }
             }
@@ -76,12 +127,15 @@ main  {
     }
 }
 aside {
-    margin-top: 75px;
     margin-bottom: 50px;
+    margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 9fr 1fr;
     figure {
         grid-column: 2/3;
+    }
+    @media #{$res-xsmall}{    
+        grid-template-columns: 1fr; 
     }
 }
 p {
@@ -96,7 +150,7 @@ h1 {
 }
 
 hr {
-    height: 7px;
+    height: 3%;
     border: none;
     background-color: #FF8800;
     grid-column: 1 / 3;

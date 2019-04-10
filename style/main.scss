@@ -158,7 +158,8 @@ body {
 
 
         footer {
-            height: 200px;
+            //height: 200px;    
+            min-height: 200px;
             grid-area: footer;
             background-color: $gray;
             display: grid;
