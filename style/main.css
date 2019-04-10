@@ -178,7 +178,7 @@ body #wrapper div#header-wrapper header nav div svg.burger {
 }
 
 body #wrapper footer {
-  height: 200px;
+  min-height: 200px;
   -ms-grid-row: 4;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
