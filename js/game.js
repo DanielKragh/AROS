@@ -20,6 +20,9 @@ var StartEnemySpawnTimerInMs = 2500;
 var EnemySpawnTimerDecreaseAmountInMs = 50;
 var MaxSpawnTimer = 500;
 
+var CurrentHighscore = 0;
+var IncrementHighscoreEveryMs = 100;
+
 var gameOver = false;
 
 $(function () {
@@ -46,10 +49,22 @@ function Loop() {
     EnemyLoop();
     SpawnEnemies();
     Collision();
+    IncrementHighscore();
+}
+
+
+var highscoreTimer = Date.now();
+function IncrementHighscore(){
+    if((Date.now() - highscoreTimer) >= IncrementHighscoreEveryMs){
+        CurrentHighscore++;
+        highscoreTimer = Date.now();
+    }
+    $("#highscore").text(CurrentHighscore);
 }
 
 function StartGame(){    
     gameOver = false;
+    CurrentHighscore = 0;
     $(document).off(); //To fix jump when pressing restart
     CurrentEnemySpawnTimerInMs = StartEnemySpawnTimerInMs;
     SetBoyPos();
