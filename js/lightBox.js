@@ -33,7 +33,7 @@ $('.img-galleri').on('click', 'a', function(evnet){
   console.log(this)
   
 
-  if($(this).children().eq(0).is("img")){
+  if($(this).children().eq(1).is("img")){
     var imageSrc = $(this).attr('href');
     $image.attr('src', imageSrc);
     $video.hide();

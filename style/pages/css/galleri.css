@@ -37,6 +37,7 @@ div#content main section {
       grid-template-columns: repeat(2, 1fr);
   -ms-grid-rows: (10.3vw)[20];
       grid-template-rows: repeat(20, 10.3vw);
+  grid-gap: 10px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -46,10 +47,32 @@ div#content main section {
   }
 }
 
+div#content main section figure {
+  overflow: hidden;
+}
+
 div#content main section figure a {
   position: relative;
   width: 100%;
   height: 100%;
+  display: block;
+}
+
+div#content main section figure a i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  color: white;
+  font-size: 3em;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+div#content main section figure a:hover i {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
 }
 
 div#content main section figure a video {
