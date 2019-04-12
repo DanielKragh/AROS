@@ -15,30 +15,64 @@ var CurrentJumpAcc = 0;
 
 var Enemys;
 var EnemyRotationSpeed = 20;
+var StartEnemySpawnTimerMs = 2500;
+var EnemySpawnTimerDecreaseAmountInMs = 50;
+var MaxSpawnTimer = 500;
+
+var gameOver = false;
 
 $(function () {
     Boy = $("#Boy");
     Enemys = $(".enemy");
     Platform = $("#Platform");
-    // Boy.position().top;
     RegisterKeyEvents();
-    SpawnEnemy();
-    // var boyTopPercent = $(Boy).width()/$(Boy).parent().height()*100;
-    // var something = ($(Boy).position().top/(Boy).parent().height()*100) + boyTopPercent; 
+    // SpawnEnemy();
     var something = ($(Boy).width() / $(Boy).parent().height() * 100);
     something = 90 - something + 5;
 
     $(Boy).css("top", something + "%");
     function Loop() {
+        if(gameOver)
+            return;
         FallDown();
         RisingUp();
         requestAnimationFrame(Loop);
         $("#JumpingUp").text(jumpingUp);
         $("#FallingDown").text(fallingDown);
         EnemyLoop();
+        SpawnEnemies();
+        Collision();
     }
     Loop();
 });
+
+function Collision() {
+    Enemys.each(function () {
+        var collision = checkCollisions(Boy, $(this));
+        if (collision) {
+            gameOver = true;
+        }
+    });
+}
+
+var lastSpawned = Date.now();
+var timerTest = Date.now();
+function SpawnEnemies() {
+    if (Date.now() - lastSpawned >= (StartEnemySpawnTimerMs - EnemySpawnTimerDecreaseAmountInMs)) {
+        console.log(StartEnemySpawnTimerMs)
+        SpawnEnemy();
+        lastSpawned = Date.now();
+    }
+    if ((Date.now() - timerTest) >= 5000) {
+        if (StartEnemySpawnTimerMs <= MaxSpawnTimer) {
+            StartEnemySpawnTimerMs = MaxSpawnTimer;
+        }
+        else {
+            StartEnemySpawnTimerMs -= EnemySpawnTimerDecreaseAmountInMs;
+        }
+        timerTest = Date.now();
+    }
+}
 
 function FallDown() {
     if (jumpingUp)
@@ -46,8 +80,7 @@ function FallDown() {
 
     var groundYPosPercent = ($(Boy).width() / $(Boy).parent().height() * 100);
     groundYPosPercent = 90 - groundYPosPercent + 5;
-    var boyYPercent = $(Boy).position().top/$(Boy).parent().height()*100;
-    console.log(boyYPercent, groundYPosPercent);
+    var boyYPercent = $(Boy).position().top / $(Boy).parent().height() * 100;
     var onGround = boyYPercent > groundYPosPercent;
     if (onGround) {
         fallingDown = false;
@@ -114,6 +147,7 @@ function MoveEnemy(element) {
 function DeleteIfOutside(element) {
     if (element.position().left + element.width() <= 0) {
         element.remove();
+        Enemys = $(".enemy");
     }
 }
 
