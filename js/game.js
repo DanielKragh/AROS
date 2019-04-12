@@ -26,11 +26,13 @@ var IncrementHighscoreEveryMs = 100;
 var gameOver = false;
 
 var highscore;
+var fps;
 
 $(function () {
     Boy = $("#Boy");
     Platform = $("#Platform");
     highscore = $("#highscore");
+    fps = $("#fps");
     StartGame();
     Loop();
 });
@@ -53,8 +55,19 @@ function Loop() {
     SpawnEnemies();
     Collision();
     IncrementHighscore();
+    FpsCounter();
 }
 
+var framesInSecound = 0;
+var fpsTimer = Date.now();
+function FpsCounter(){
+    framesInSecound++;
+    if((Date.now() - fpsTimer) >= 1000){
+        fps.text(framesInSecound);
+        fpsTimer = Date.now();
+        framesInSecound = 0;
+    }
+}
 
 var highscoreTimer = Date.now();
 function IncrementHighscore(){
