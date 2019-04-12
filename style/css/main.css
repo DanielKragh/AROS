@@ -306,4 +306,24 @@ body #wrapper footer div#maps iframe .gmap_canvas {
   height: 200px;
   width: 100%;
 }
+
+.left-fadein {
+  -webkit-transform: translateX(-100vh);
+          transform: translateX(-100vh);
+  opacity: 0;
+  -webkit-transition: opacity 2s, -webkit-transform 1s;
+  transition: opacity 2s, -webkit-transform 1s;
+  transition: opacity 2s, transform 1s;
+  transition: opacity 2s, transform 1s, -webkit-transform 1s;
+}
+
+.right-fadein {
+  -webkit-transform: translateX(100vh);
+          transform: translateX(100vh);
+  opacity: 0;
+  -webkit-transition: opacity 2s, -webkit-transform 1s;
+  transition: opacity 2s, -webkit-transform 1s;
+  transition: opacity 2s, transform 1s;
+  transition: opacity 2s, transform 1s, -webkit-transform 1s;
+}
 /*# sourceMappingURL=main.css.map */

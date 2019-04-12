@@ -4,17 +4,6 @@ $(function () {
     var h1 = $("h1");
     frontHr.addClass("moveHr");
 
-    $(window).on("scroll", function(){
-        if(scrolledIntoView($("#om-AROS div p"))){
-            $("#om-AROS div p").css("transform", "translateX(0)");
-            $("#om-AROS div p").css("opacity", "1");
-        }
-        if(scrolledIntoView($("#om-AROS div figure"))){
-            $("#om-AROS div figure").css("transform", "translateX(0)");
-            $("#om-AROS div figure").css("opacity", "1");
-        }
-    });
-
     for (var i = 0; i < oldSpans.length; i++) {
         var word = oldSpans.eq(i).text();
         var spanWidth = oldSpans.eq(i).width() / oldSpans.eq(i).parent().width() * 100;

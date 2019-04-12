@@ -97,17 +97,10 @@ div#content {
                     font-size: $xsFont;
                     color: $pColor;
                     line-height: 1.5;
-                    left: -100%;
-                    transform: translateX(-125%);
-                    transition: 1s;
-                    opacity: 0;
                 }
 
 
                 figure {
-                    opacity: 0;
-                    transform: translateX(125%);
-                    transition: 1s;
                     img {
                         width: 100%;
                     }
