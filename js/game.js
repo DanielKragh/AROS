@@ -15,38 +15,120 @@ var CurrentJumpAcc = 0;
 
 var Enemys;
 var EnemyRotationSpeed = 20;
+var CurrentEnemySpawnTimerInMs;
+var StartEnemySpawnTimerInMs = 2500;
+var EnemySpawnTimerDecreaseAmountInMs = 50;
+var MaxSpawnTimer = 500;
+
+var CurrentHighscore = 0;
+var IncrementHighscoreEveryMs = 100;
+
+var gameOver = false;
+
+var highscore;
+var fps;
 
 $(function () {
     Boy = $("#Boy");
-    Enemys = $(".enemy");
     Platform = $("#Platform");
-    // Boy.position().top;
-    RegisterKeyEvents();
-    SpawnEnemy();
-    // var boyTopPercent = $(Boy).width()/$(Boy).parent().height()*100;
-    // var something = ($(Boy).position().top/(Boy).parent().height()*100) + boyTopPercent; 
-    something = ($(Boy).width() / $(Boy).parent().height() * 100);
-    console.log(something);
-    $(Boy).css("top", (90 - something) + 5 + "%");
-    function Loop() {
-        FallDown();
-        RisingUp();
-        requestAnimationFrame(Loop);
-        $("#JumpingUp").text(jumpingUp);
-        $("#FallingDown").text(fallingDown);
-        //EnemyLoop();
-    }
+    highscore = $("#highscore");
+    fps = $("#fps");
+    StartGame();
     Loop();
 });
+
+function SetBoyPos(){
+    var something = ($(Boy).width() / $(Boy).parent().height() * 100);
+    something = 90 - something + 5;
+    $(Boy).css("top", something + "%");  
+}
+
+function Loop() {
+    requestAnimationFrame(Loop);
+    if(gameOver)
+        return;
+    FallDown();
+    RisingUp();
+    // $("#JumpingUp").text(jumpingUp);
+    // $("#FallingDown").text(fallingDown);
+    EnemyLoop();
+    SpawnEnemies();
+    Collision();
+    IncrementHighscore();
+    FpsCounter();
+}
+
+var framesInSecound = 0;
+var fpsTimer = Date.now();
+function FpsCounter(){
+    framesInSecound++;
+    if((Date.now() - fpsTimer) >= 1000){
+        fps.text(framesInSecound);
+        fpsTimer = Date.now();
+        framesInSecound = 0;
+    }
+}
+
+var highscoreTimer = Date.now();
+function IncrementHighscore(){
+    if((Date.now() - highscoreTimer) >= IncrementHighscoreEveryMs){
+        CurrentHighscore++;
+        highscoreTimer = Date.now();
+    }
+    highscore.text(CurrentHighscore);
+}
+
+function StartGame(){    
+    gameOver = false;
+    CurrentHighscore = 0;
+    $(document).off(); //To fix jump when pressing restart
+    CurrentEnemySpawnTimerInMs = StartEnemySpawnTimerInMs;
+    SetBoyPos();
+    $(".enemy").remove();
+    Enemys = $(".enemy");
+    $("#try-again").hide();
+    setTimeout(function(){
+        RegisterKeyEvents();
+    }, 200);
+}
+
+function Collision() {
+    Enemys.each(function () {
+        var collision = checkCollisions(Boy, $(this));
+        if (collision) {
+            gameOver = true;
+            $("#try-again").show();
+        }
+    });
+}
+
+var lastSpawned = Date.now();
+var timerTest = Date.now();
+function SpawnEnemies() {
+    if (Date.now() - lastSpawned >= (CurrentEnemySpawnTimerInMs - EnemySpawnTimerDecreaseAmountInMs)) {
+        console.log(CurrentEnemySpawnTimerInMs)
+        SpawnEnemy();
+        lastSpawned = Date.now();
+    }
+    if ((Date.now() - timerTest) >= 5000) {
+        if (CurrentEnemySpawnTimerInMs <= MaxSpawnTimer) {
+            CurrentEnemySpawnTimerInMs = MaxSpawnTimer;
+        }
+        else {
+            CurrentEnemySpawnTimerInMs -= EnemySpawnTimerDecreaseAmountInMs;
+        }
+        timerTest = Date.now();
+    }
+}
 
 function FallDown() {
     if (jumpingUp)
         return
-    
-    var something = ($(Boy).width() / $(Boy).parent().height() * 100);
-    something = (90 - something)+5;
-    console.log($(Boy).height());
-    var onGround = $(Boy).height() > something; //checkCollisions(Boy, Platform);
+
+    var groundYPosPercent = ($(Boy).width() / $(Boy).parent().height() * 100);
+    groundYPosPercent = 90 - groundYPosPercent + 5;
+    var boyYPercent = $(Boy).position().top / $(Boy).parent().height() * 100;
+    var onGround = boyYPercent > groundYPosPercent;
     if (onGround) {
         fallingDown = false;
         jumpingUp = false;
@@ -86,6 +168,9 @@ function RegisterKeyEvents() {
     $(document).on("click", function () {
         Jump();
     });
+    $("#try-again").on("click", function(){
+        StartGame();
+    });
 }
 
 function Jump() {
@@ -112,6 +197,7 @@ function MoveEnemy(element) {
 function DeleteIfOutside(element) {
     if (element.position().left + element.width() <= 0) {
         element.remove();
+        Enemys = $(".enemy");
     }
 }
 
@@ -126,7 +212,7 @@ function rotate(element) {
 }
 
 function SpawnEnemy() {
-    var enemyTemplate = $("<img class='enemy' src='resurser/img/hoved1Web.png'/>");
+    var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/hoved1Small.png'/>");
     $("#content").append(enemyTemplate);
     console.log(enemyTemplate);
     enemyTemplate.css("left", $("#content").width() - enemyTemplate.width());
