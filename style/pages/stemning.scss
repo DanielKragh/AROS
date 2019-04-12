@@ -13,6 +13,17 @@
 #content{
     min-height: 400px;
     position: relative;
+    #try-again {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border: none;
+        background-color: green;
+        padding: 10px;
+        font-size: 55px;
+        transform: translate(-50%, -50%);
+    }
 }
 
 #Platform {
@@ -30,3 +41,4 @@
     left: 0;
     top: 0;
 }
+

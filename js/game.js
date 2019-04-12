@@ -15,7 +15,8 @@ var CurrentJumpAcc = 0;
 
 var Enemys;
 var EnemyRotationSpeed = 20;
-var StartEnemySpawnTimerMs = 2500;
+var CurrentEnemySpawnTimerInMs;
+var StartEnemySpawnTimerInMs = 2500;
 var EnemySpawnTimerDecreaseAmountInMs = 50;
 var MaxSpawnTimer = 500;
 
@@ -23,34 +24,49 @@ var gameOver = false;
 
 $(function () {
     Boy = $("#Boy");
-    Enemys = $(".enemy");
     Platform = $("#Platform");
-    RegisterKeyEvents();
-    // SpawnEnemy();
-    var something = ($(Boy).width() / $(Boy).parent().height() * 100);
-    something = 90 - something + 5;
-
-    $(Boy).css("top", something + "%");
-    function Loop() {
-        if(gameOver)
-            return;
-        FallDown();
-        RisingUp();
-        requestAnimationFrame(Loop);
-        $("#JumpingUp").text(jumpingUp);
-        $("#FallingDown").text(fallingDown);
-        EnemyLoop();
-        SpawnEnemies();
-        Collision();
-    }
+    StartGame();
     Loop();
 });
+
+function SetBoyPos(){
+    var something = ($(Boy).width() / $(Boy).parent().height() * 100);
+    something = 90 - something + 5;
+    $(Boy).css("top", something + "%");  
+}
+
+function Loop() {
+    requestAnimationFrame(Loop);
+    if(gameOver)
+        return;
+    FallDown();
+    RisingUp();
+    $("#JumpingUp").text(jumpingUp);
+    $("#FallingDown").text(fallingDown);
+    EnemyLoop();
+    SpawnEnemies();
+    Collision();
+}
+
+function StartGame(){    
+    gameOver = false;
+    $(document).off(); //To fix jump when pressing restart
+    CurrentEnemySpawnTimerInMs = StartEnemySpawnTimerInMs;
+    SetBoyPos();
+    $(".enemy").remove();
+    Enemys = $(".enemy");
+    $("#try-again").hide();
+    setTimeout(function(){
+        RegisterKeyEvents();
+    }, 200);
+}
 
 function Collision() {
     Enemys.each(function () {
         var collision = checkCollisions(Boy, $(this));
         if (collision) {
             gameOver = true;
+            $("#try-again").show();
         }
     });
 }
@@ -58,17 +74,17 @@ function Collision() {
 var lastSpawned = Date.now();
 var timerTest = Date.now();
 function SpawnEnemies() {
-    if (Date.now() - lastSpawned >= (StartEnemySpawnTimerMs - EnemySpawnTimerDecreaseAmountInMs)) {
-        console.log(StartEnemySpawnTimerMs)
+    if (Date.now() - lastSpawned >= (CurrentEnemySpawnTimerInMs - EnemySpawnTimerDecreaseAmountInMs)) {
+        console.log(CurrentEnemySpawnTimerInMs)
         SpawnEnemy();
         lastSpawned = Date.now();
     }
     if ((Date.now() - timerTest) >= 5000) {
-        if (StartEnemySpawnTimerMs <= MaxSpawnTimer) {
-            StartEnemySpawnTimerMs = MaxSpawnTimer;
+        if (CurrentEnemySpawnTimerInMs <= MaxSpawnTimer) {
+            CurrentEnemySpawnTimerInMs = MaxSpawnTimer;
         }
         else {
-            StartEnemySpawnTimerMs -= EnemySpawnTimerDecreaseAmountInMs;
+            CurrentEnemySpawnTimerInMs -= EnemySpawnTimerDecreaseAmountInMs;
         }
         timerTest = Date.now();
     }
@@ -120,6 +136,9 @@ function RegisterKeyEvents() {
     });
     $(document).on("click", function () {
         Jump();
+    });
+    $("#try-again").on("click", function(){
+        StartGame();
     });
 }
 
