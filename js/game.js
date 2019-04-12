@@ -53,7 +53,7 @@ function Loop() {
     // $("#FallingDown").text(fallingDown);
     EnemyLoop();
     SpawnEnemies();
-    // Collision();
+    Collision();
     IncrementHighscore();
     FpsCounter();
 }
@@ -212,7 +212,7 @@ function rotate(element) {
 }
 
 function SpawnEnemy() {
-    var enemyTemplate = $("<img class='enemy' src='resurser/img/hoved1Web.png'/>");
+    var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/hoved1Small.png'/>");
     $("#content").append(enemyTemplate);
     console.log(enemyTemplate);
     enemyTemplate.css("left", $("#content").width() - enemyTemplate.width());
