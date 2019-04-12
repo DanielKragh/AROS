@@ -25,9 +25,12 @@ var IncrementHighscoreEveryMs = 100;
 
 var gameOver = false;
 
+var highscore;
+
 $(function () {
     Boy = $("#Boy");
     Platform = $("#Platform");
+    highscore = $("#highscore");
     StartGame();
     Loop();
 });
@@ -44,8 +47,8 @@ function Loop() {
         return;
     FallDown();
     RisingUp();
-    $("#JumpingUp").text(jumpingUp);
-    $("#FallingDown").text(fallingDown);
+    // $("#JumpingUp").text(jumpingUp);
+    // $("#FallingDown").text(fallingDown);
     EnemyLoop();
     SpawnEnemies();
     Collision();
@@ -59,7 +62,7 @@ function IncrementHighscore(){
         CurrentHighscore++;
         highscoreTimer = Date.now();
     }
-    $("#highscore").text(CurrentHighscore);
+    highscore.text(CurrentHighscore);
 }
 
 function StartGame(){    
