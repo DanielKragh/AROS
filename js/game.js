@@ -25,16 +25,17 @@ $(function () {
     SpawnEnemy();
     // var boyTopPercent = $(Boy).width()/$(Boy).parent().height()*100;
     // var something = ($(Boy).position().top/(Boy).parent().height()*100) + boyTopPercent; 
-    something = ($(Boy).width() / $(Boy).parent().height() * 100);
-    console.log(something);
-    $(Boy).css("top", (90 - something) + 5 + "%");
+    var something = ($(Boy).width() / $(Boy).parent().height() * 100);
+    something = 90 - something + 5;
+
+    $(Boy).css("top", something + "%");
     function Loop() {
         FallDown();
         RisingUp();
         requestAnimationFrame(Loop);
         $("#JumpingUp").text(jumpingUp);
         $("#FallingDown").text(fallingDown);
-        //EnemyLoop();
+        EnemyLoop();
     }
     Loop();
 });
@@ -42,11 +43,12 @@ $(function () {
 function FallDown() {
     if (jumpingUp)
         return
-    
-    var something = ($(Boy).width() / $(Boy).parent().height() * 100);
-    something = (90 - something)+5;
-    console.log($(Boy).height());
-    var onGround = $(Boy).height() > something; //checkCollisions(Boy, Platform);
+
+    var groundYPosPercent = ($(Boy).width() / $(Boy).parent().height() * 100);
+    groundYPosPercent = 90 - groundYPosPercent + 5;
+    var boyYPercent = $(Boy).position().top/$(Boy).parent().height()*100;
+    console.log(boyYPercent, groundYPosPercent);
+    var onGround = boyYPercent > groundYPosPercent;
     if (onGround) {
         fallingDown = false;
         jumpingUp = false;
