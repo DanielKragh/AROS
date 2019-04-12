@@ -138,7 +138,8 @@ function FallDown() {
     fallingDown = true;
     CurrentJumpAcc += 0.03;
     BoyY += BoyFallSpeed * CurrentJumpAcc;
-    Boy.css("transform", "translate3d(0," + BoyY + "%,0)");
+    // Boy.css("transform", "translate3d(0," + BoyY + "%,0)");
+    Boy[0].style.transform = "translate3d(0," + BoyY + "%,0)";
 }
 
 function RisingUp() {
@@ -154,7 +155,8 @@ function RisingUp() {
     }
     CurrentJumpAcc -= 0.030;
     BoyY -= BoyFallSpeed * CurrentJumpAcc;
-    Boy.css("transform", "translate3d(0," + BoyY + "%,0)");
+    Boy[0].style.transform = "translate3d(0," + BoyY + "%,0)";
+    // Boy.css("transform", "translate3d(0," + BoyY + "%,0)");
 }
 
 function RegisterKeyEvents() {
@@ -191,7 +193,8 @@ function EnemyLoop() {
 }
 
 function MoveEnemy(element) {
-    element.css("left", element.position().left + 1)
+    // element.css("left", element.position().left + 1);
+    element[0].style.left = element.position().left + 1 + "px";
 }
 
 function DeleteIfOutside(element) {
@@ -208,7 +211,8 @@ function rotate(element) {
     }
     rotation -= EnemyRotationSpeed;
     element.data("rotation", rotation);
-    element.css("transform", "rotate(" + rotation + "deg)");
+    // element.css("transform", "rotate(" + rotation + "deg)");
+    element[0].style.transform = "rotate(" + rotation + "deg)";
 }
 
 function SpawnEnemy() {
