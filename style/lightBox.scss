@@ -1,0 +1,73 @@
+@import "variables";
+#zoomBil {
+    background: rgba(0, 0, 0, 0.589);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: none;
+    text-align: center;
+    width: 100%;
+}
+
+.wrap {
+    border: 8px solid white;
+    border-radius: 3px;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: lightboxZoom;
+    animation-duration: 0.3s;
+    width: 100%;
+}
+
+img.image {
+    margin: 10vh 0;
+    max-height: 600px;
+    @media #{$res-small}{
+        max-height: 70vh;
+        max-width: 90vw;
+        margin: 15vh 0;
+
+    }
+    
+}
+video.video{
+    margin: 10vh 0;
+    max-height: 600px;
+    @media #{$res-small}{
+        max-height: 70vh;
+        max-width: 90vw;
+        margin: 15vh 0;
+
+    }
+}
+
+p#billedText {
+    position: absolute;
+    top: 95vh;
+    left: 35%;
+}
+
+.close {
+    color: white;
+    cursor: pointer;
+    background: none;
+    border-radius: 50%;
+    font-size: 4em;
+    line-height: 1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 3px;
+    text-decoration: none;
+    transition: .5s;
+
+    &:hover {
+        transform: rotate(180deg);
+    }
+}
