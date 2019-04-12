@@ -12,7 +12,7 @@
 }
 
 #content {
-  height: 300px;
+  min-height: 400px;
   position: relative;
 }
 
@@ -22,10 +22,11 @@
   background-color: #6e6e6e;
   position: absolute;
   top: 90%;
+  z-index: -1;
 }
 
 .enemy {
-  width: 5%;
+  width: 5vw;
   position: absolute;
   left: 0;
   top: 0;

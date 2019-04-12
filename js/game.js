@@ -23,13 +23,18 @@ $(function () {
     // Boy.position().top;
     RegisterKeyEvents();
     SpawnEnemy();
+    // var boyTopPercent = $(Boy).width()/$(Boy).parent().height()*100;
+    // var something = ($(Boy).position().top/(Boy).parent().height()*100) + boyTopPercent; 
+    something = ($(Boy).width() / $(Boy).parent().height() * 100);
+    console.log(something);
+    $(Boy).css("top", (90 - something) + 5 + "%");
     function Loop() {
         FallDown();
         RisingUp();
         requestAnimationFrame(Loop);
         $("#JumpingUp").text(jumpingUp);
         $("#FallingDown").text(fallingDown);
-        EnemyLoop();
+        //EnemyLoop();
     }
     Loop();
 });
@@ -37,8 +42,11 @@ $(function () {
 function FallDown() {
     if (jumpingUp)
         return
-
-    var onGround = checkCollisions(Boy, Platform);
+    
+    var something = ($(Boy).width() / $(Boy).parent().height() * 100);
+    something = (90 - something)+5;
+    console.log($(Boy).height());
+    var onGround = $(Boy).height() > something; //checkCollisions(Boy, Platform);
     if (onGround) {
         fallingDown = false;
         jumpingUp = false;
@@ -97,17 +105,17 @@ function EnemyLoop() {
     });
 }
 
-function MoveEnemy(element){
-    element.css("left", element.position().left+1)
+function MoveEnemy(element) {
+    element.css("left", element.position().left + 1)
 }
 
-function DeleteIfOutside(element){
-    if(element.position().left+element.width() <= 0){
+function DeleteIfOutside(element) {
+    if (element.position().left + element.width() <= 0) {
         element.remove();
     }
 }
 
-function rotate(element){
+function rotate(element) {
     var rotation = 0;
     if (element.data("rotation")) {
         rotation = element.data("rotation");
@@ -117,11 +125,12 @@ function rotate(element){
     element.css("transform", "rotate(" + rotation + "deg)");
 }
 
-function SpawnEnemy(){
+function SpawnEnemy() {
     var enemyTemplate = $("<img class='enemy' src='resurser/img/hoved1Web.png'/>");
     $("#content").append(enemyTemplate);
     console.log(enemyTemplate);
-    enemyTemplate.css("left", $("#content").width()-enemyTemplate.width());
-    enemyTemplate.css("top", 230)
+    enemyTemplate.css("left", $("#content").width() - enemyTemplate.width());
+    var topPercent = 90 - ($(".enemy").width() / $(".enemy").parent().height() * 100);
+    enemyTemplate.css("top", topPercent + 5 + "%")
     Enemys = $(".enemy");
 }
