@@ -53,7 +53,7 @@ function Loop() {
     // $("#FallingDown").text(fallingDown);
     EnemyLoop();
     SpawnEnemies();
-    Collision();
+    // Collision();
     IncrementHighscore();
     FpsCounter();
 }
