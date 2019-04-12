@@ -267,6 +267,12 @@ div#content aside div.slide-wrapper .slider div.anmeld p {
   color: #a1a1a1;
 }
 
+@media only screen and (max-width: 600px) {
+  div#content aside div.slide-wrapper .slider div.anmeld p {
+    font-size: 14px;
+  }
+}
+
 div#content aside div.slide-wrapper .slider div.anmeld p.italy {
   font-family: "Georgia", serif;
   font-style: italic;

@@ -227,6 +227,9 @@ div#content {
                     p {
                         font-size: $xsFont;
                         color: $pColor;
+                        @media #{$res-xsmall} {
+                            font-size: 14px;
+                        }
                     }
 
                     p.italy {
