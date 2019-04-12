@@ -11,6 +11,7 @@ div#content main h1 {
   grid-column: 2/3;
   -ms-grid-column-align: center;
       justify-self: center;
+  padding-top: 40px;
 }
 
 div#content main hr {
