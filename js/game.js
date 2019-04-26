@@ -16,7 +16,7 @@ var CurrentJumpAcc = 0;
 var Enemys;
 var EnemyRotationSpeed = 1.2;
 var CurrentEnemySpawnTimerInMs;
-var StartEnemySpawnTimerInMs = 2500;
+var StartEnemySpawnTimerInMs = 600;
 var EnemySpawnTimerDecreaseAmountInMs = 50;
 var MaxSpawnTimer = 500;
 
