@@ -28,6 +28,8 @@ var gameOver = false;
 var highscore;
 var fps;
 
+var canvas;
+
 var enemieSkins = ["hoved1Small.png", "hoved2WebSmall.png"]
 
 $(function () {
@@ -35,6 +37,7 @@ $(function () {
     Platform = $("#Platform");
     highscore = $("#highscore");
     fps = $("#fps");
+    canvas = $("#content");
     StartGame();
     Loop();
 });
@@ -194,14 +197,14 @@ function Jump() {
 function EnemyLoop() {
     Enemys.each(function () {
         rotate($(this));
-        MoveEnemy($(this));
+        MoveEnemy(this);
         DeleteIfOutside($(this));
     });
 }
 
 function MoveEnemy(element) {
-    var percent = element[0].offsetLeft/$("#content").width()*100;
-    element[0].style.left = percent - 0.07*deltaTime + "%";
+    var percent = element.offsetLeft/canvas[0].offsetWidth*100;
+    element.style.left = percent - 0.07*deltaTime + "%";
 }
 
 function DeleteIfOutside(element) {
@@ -224,8 +227,8 @@ function rotate(element) {
 function SpawnEnemy() {
     var randomSkinIndex = Math.floor(Math.random() * Math.floor(enemieSkins.length));
     var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/"+enemieSkins[randomSkinIndex]+"'/>");
-    $("#content").append(enemyTemplate);
-    enemyTemplate.css("left", $("#content").width() - enemyTemplate.width());
+    canvas.append(enemyTemplate);
+    enemyTemplate.css("left", canvas.width() - enemyTemplate.width());
     var topPercent = 90 - ($(".enemy").width() / $(".enemy").parent().height() * 100);
     enemyTemplate.css("top", topPercent + 5 + "%")
     Enemys = $(".enemy");
