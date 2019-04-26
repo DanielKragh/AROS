@@ -1,4 +1,4 @@
-var BoyFallSpeed = 10.2;
+var BoyFallSpeed = 0.9;
 var Boy;
 var BoyY = 0;
 var jumpHeight = 130;
@@ -14,7 +14,7 @@ var JumpAcc = 1;
 var CurrentJumpAcc = 0;
 
 var Enemys;
-var EnemyRotationSpeed = 20;
+var EnemyRotationSpeed = 1.2;
 var CurrentEnemySpawnTimerInMs;
 var StartEnemySpawnTimerInMs = 2500;
 var EnemySpawnTimerDecreaseAmountInMs = 50;
@@ -43,8 +43,14 @@ function SetBoyPos(){
     $(Boy).css("top", something + "%");  
 }
 
+var deltaTime = 0;
+var lastUpdate = Date.now();
+
 function Loop() {
     requestAnimationFrame(Loop);
+    var now = Date.now();
+    deltaTime = now - lastUpdate;
+    lastUpdate = now;
     if(gameOver)
         return;
     FallDown();
@@ -136,8 +142,8 @@ function FallDown() {
     }
 
     fallingDown = true;
-    CurrentJumpAcc += 0.03;
-    BoyY += BoyFallSpeed * CurrentJumpAcc;
+    CurrentJumpAcc += 0.0025*deltaTime;
+    BoyY += BoyFallSpeed * CurrentJumpAcc * deltaTime;
     // Boy.css("transform", "translate3d(0," + BoyY + "%,0)");
     Boy[0].style.transform = "translate3d(0," + BoyY + "%,0)";
 }
@@ -153,8 +159,8 @@ function RisingUp() {
         CurrentJumpAcc = 0;
         return;
     }
-    CurrentJumpAcc -= 0.030;
-    BoyY -= BoyFallSpeed * CurrentJumpAcc;
+    CurrentJumpAcc -= 0.0025*deltaTime;
+    BoyY -= BoyFallSpeed * CurrentJumpAcc * deltaTime;
     Boy[0].style.transform = "translate3d(0," + BoyY + "%,0)";
     // Boy.css("transform", "translate3d(0," + BoyY + "%,0)");
 }
@@ -193,8 +199,7 @@ function EnemyLoop() {
 }
 
 function MoveEnemy(element) {
-    // element.css("left", element.position().left + 1);
-    element[0].style.left = element.position().left + 1 + "px";
+    element[0].style.left = element[0].offsetLeft - 1*deltaTime + "px";
 }
 
 function DeleteIfOutside(element) {
@@ -209,9 +214,8 @@ function rotate(element) {
     if (element.data("rotation")) {
         rotation = element.data("rotation");
     }
-    rotation -= EnemyRotationSpeed;
+    rotation -= EnemyRotationSpeed*deltaTime;
     element.data("rotation", rotation);
-    // element.css("transform", "rotate(" + rotation + "deg)");
     element[0].style.transform = "rotate(" + rotation + "deg)";
 }
 
