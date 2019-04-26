@@ -1,10 +1,12 @@
+@import "../variables";
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-#Boy {
+#Player {
     width: 10vw;
     position: absolute;
     left: 5%;
@@ -23,6 +25,14 @@
         padding: 10px;
         font-size: 55px;
         transform: translate(-50%, -50%);
+    }
+    div.skinSellector{
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: solid $orange 5px;
+        border-radius: 5px;
+        padding: 20px 40px;
     }
 }
 

@@ -5,7 +5,7 @@
           box-sizing: border-box;
 }
 
-#Boy {
+#Player {
   width: 10vw;
   position: absolute;
   left: 5%;
@@ -27,6 +27,15 @@
   font-size: 55px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+#content div.skinSellector {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: solid #FF8800 5px;
+  border-radius: 5px;
+  padding: 20px 40px;
 }
 
 #Platform {

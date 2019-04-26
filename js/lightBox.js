@@ -52,5 +52,8 @@ $('.img-galleri').on('click', 'a', function(evnet){
 // click event for close.
 $close.click(function(){
   $zoomBil.hide();
+});
+$wrap.click(function(){
+  $zoomBil.hide();
 })
 });
