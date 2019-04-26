@@ -16,7 +16,7 @@ var CurrentJumpAcc = 0;
 var Enemys;
 var EnemyRotationSpeed = 1.2;
 var CurrentEnemySpawnTimerInMs;
-var StartEnemySpawnTimerInMs = 600;
+var StartEnemySpawnTimerInMs = 2500;
 var EnemySpawnTimerDecreaseAmountInMs = 50;
 var MaxSpawnTimer = 500;
 
@@ -102,8 +102,8 @@ function Collision() {
     Enemys.each(function () {
         var collision = checkCollisions(Boy, $(this));
         if (collision) {
-            // gameOver = true;
-            // $("#try-again").show();
+            gameOver = true;
+            $("#try-again").show();
         }
     });
 }
