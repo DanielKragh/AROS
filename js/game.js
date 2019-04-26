@@ -28,6 +28,8 @@ var gameOver = false;
 var highscore;
 var fps;
 
+var enemieSkins = ["hoved1Small.png", "hoved2WebSmall.png"]
+
 $(function () {
     Boy = $("#Player");
     Platform = $("#Platform");
@@ -112,7 +114,6 @@ var lastSpawned = Date.now();
 var timerTest = Date.now();
 function SpawnEnemies() {
     if (Date.now() - lastSpawned >= (CurrentEnemySpawnTimerInMs - EnemySpawnTimerDecreaseAmountInMs)) {
-        console.log(CurrentEnemySpawnTimerInMs)
         SpawnEnemy();
         lastSpawned = Date.now();
     }
@@ -199,7 +200,6 @@ function EnemyLoop() {
 }
 
 function MoveEnemy(element) {
-    // console.log(element[0].offsetLeft/$("#content").width()*100);
     var percent = element[0].offsetLeft/$("#content").width()*100;
     element[0].style.left = percent - 0.07*deltaTime + "%";
 }
@@ -222,10 +222,9 @@ function rotate(element) {
 }
 
 function SpawnEnemy() {
-    var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/hoved1Small.png'/>");
-    // var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/hoved2WebSmall.png'/>");
+    var randomSkinIndex = Math.floor(Math.random() * Math.floor(enemieSkins.length));
+    var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/"+enemieSkins[randomSkinIndex]+"'/>");
     $("#content").append(enemyTemplate);
-    console.log(enemyTemplate);
     enemyTemplate.css("left", $("#content").width() - enemyTemplate.width());
     var topPercent = 90 - ($(".enemy").width() / $(".enemy").parent().height() * 100);
     enemyTemplate.css("top", topPercent + 5 + "%")
