@@ -28,11 +28,16 @@ var gameOver = false;
 var highscore;
 var fps;
 
+var canvas;
+
+var enemieSkins = ["hoved1Small.png", "hoved2WebSmall.png"]
+
 $(function () {
     Boy = $("#Player");
     Platform = $("#Platform");
     highscore = $("#highscore");
     fps = $("#fps");
+    canvas = $("#content");
     StartGame();
     Loop();
 });
@@ -112,7 +117,6 @@ var lastSpawned = Date.now();
 var timerTest = Date.now();
 function SpawnEnemies() {
     if (Date.now() - lastSpawned >= (CurrentEnemySpawnTimerInMs - EnemySpawnTimerDecreaseAmountInMs)) {
-        console.log(CurrentEnemySpawnTimerInMs)
         SpawnEnemy();
         lastSpawned = Date.now();
     }
@@ -193,15 +197,14 @@ function Jump() {
 function EnemyLoop() {
     Enemys.each(function () {
         rotate($(this));
-        MoveEnemy($(this));
+        MoveEnemy(this);
         DeleteIfOutside($(this));
     });
 }
 
 function MoveEnemy(element) {
-    // console.log(element[0].offsetLeft/$("#content").width()*100);
-    var percent = element[0].offsetLeft/$("#content").width()*100;
-    element[0].style.left = percent - 0.07*deltaTime + "%";
+    var percent = element.offsetLeft/canvas[0].offsetWidth*100;
+    element.style.left = percent - 0.07*deltaTime + "%";
 }
 
 function DeleteIfOutside(element) {
@@ -222,11 +225,10 @@ function rotate(element) {
 }
 
 function SpawnEnemy() {
-    var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/hoved1Small.png'/>");
-    // var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/hoved2WebSmall.png'/>");
-    $("#content").append(enemyTemplate);
-    console.log(enemyTemplate);
-    enemyTemplate.css("left", $("#content").width() - enemyTemplate.width());
+    var randomSkinIndex = Math.floor(Math.random() * Math.floor(enemieSkins.length));
+    var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/"+enemieSkins[randomSkinIndex]+"'/>");
+    canvas.append(enemyTemplate);
+    enemyTemplate.css("left", canvas.width() - enemyTemplate.width());
     var topPercent = 90 - ($(".enemy").width() / $(".enemy").parent().height() * 100);
     enemyTemplate.css("top", topPercent + 5 + "%")
     Enemys = $(".enemy");
