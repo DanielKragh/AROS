@@ -274,7 +274,6 @@ div#content {
                 }
 
                 &.left-arrow {
-                    transform: rotate(180deg);
                     cursor: pointer;
 
                     @media #{$res-xsmall} {
