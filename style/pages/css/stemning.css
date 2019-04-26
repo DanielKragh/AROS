@@ -36,6 +36,7 @@
   border: solid #FF8800 5px;
   border-radius: 5px;
   padding: 20px 40px;
+  cursor: pointer;
 }
 
 #Platform {
