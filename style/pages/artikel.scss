@@ -13,7 +13,6 @@ main  {
     }
     section {
         margin-top: 75px;
-        margin-bottom: 100px;
         display: grid;
         grid-template-columns: 1fr 1fr;  
         grid-column: 2/3;
@@ -128,7 +127,6 @@ main  {
 }
 aside {
     margin-bottom: 50px;
-    margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 9fr 1fr;
     figure {
