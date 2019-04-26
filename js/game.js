@@ -29,7 +29,7 @@ var highscore;
 var fps;
 
 $(function () {
-    Boy = $("#Boy");
+    Boy = $("#Player");
     Platform = $("#Platform");
     highscore = $("#highscore");
     fps = $("#fps");
@@ -223,6 +223,7 @@ function rotate(element) {
 
 function SpawnEnemy() {
     var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/hoved1Small.png'/>");
+    // var enemyTemplate = $("<img class='enemy' src='resurser/img/Spil/hoved2WebSmall.png'/>");
     $("#content").append(enemyTemplate);
     console.log(enemyTemplate);
     enemyTemplate.css("left", $("#content").width() - enemyTemplate.width());
