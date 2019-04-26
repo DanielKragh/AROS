@@ -102,8 +102,8 @@ function Collision() {
     Enemys.each(function () {
         var collision = checkCollisions(Boy, $(this));
         if (collision) {
-            gameOver = true;
-            $("#try-again").show();
+            // gameOver = true;
+            // $("#try-again").show();
         }
     });
 }
