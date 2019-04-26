@@ -16,7 +16,6 @@ main figure {
 
 main section {
   margin-top: 75px;
-  margin-bottom: 100px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -191,7 +190,6 @@ main section.grey figure svg {
 
 aside {
   margin-bottom: 50px;
-  margin-top: 50px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 9fr 1fr;
