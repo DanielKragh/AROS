@@ -199,7 +199,9 @@ function EnemyLoop() {
 }
 
 function MoveEnemy(element) {
-    element[0].style.left = element[0].offsetLeft - 1*deltaTime + "px";
+    // console.log(element[0].offsetLeft/$("#content").width()*100);
+    var percent = element[0].offsetLeft/$("#content").width()*100;
+    element[0].style.left = percent - 0.07*deltaTime + "%";
 }
 
 function DeleteIfOutside(element) {
