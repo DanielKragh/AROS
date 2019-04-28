@@ -1,11 +1,5 @@
 @import "../variables";
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 #Player {
     width: 10vw;
     position: absolute;
@@ -14,11 +8,12 @@
 
 #content{
     min-height: 400px;
+    // height: 80vh;
     position: relative;
     #try-again {
         display: none;
         position: absolute;
-        top: 50%;
+        top: 75%;
         left: 50%;
         border: none;
         background-color: green;
@@ -32,8 +27,57 @@
         top: 0;
         border: solid $orange 5px;
         border-radius: 5px;
-        padding: 20px 40px;
+        padding: 1% 1%;
         cursor: pointer;
+        p {
+            text-align: center;
+        }
+    }
+    #recordsContainer{
+        display: none;
+        background-color: #232323;
+        padding: 13px;
+        color: white;
+        position: absolute;
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0);  
+        table {
+            width: 100%;
+            thead {
+                tr {
+                    display: flex;
+                    justify-content: space-between;
+                    th:nth-child(odd){
+                        text-align: left;
+                    }
+                    th:nth-child(even){
+                        text-align: right;
+                    }
+                }
+            }
+            tbody {
+                display: block;
+                overflow: auto;
+                height: 100px;
+                tr {
+                    display: flex;
+                    justify-content: space-between;
+                    td:nth-child(odd) {
+                        padding-right: 10%;
+                    }
+                    td:nth-child(even) {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+        #submitContainer {
+            padding-top: 20px;
+        }
+        #finalScoreContainer {
+            padding-bottom: 10px;
+        }
     }
 }
 

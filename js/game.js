@@ -30,7 +30,9 @@ var fps;
 
 var canvas;
 
-var enemieSkins = ["hoved1Small.png", "hoved2WebSmall.png"]
+var enemieSkins = ["hoved1Small.png", "hoved2WebSmall.png"];
+
+var submitedScore = false;
 
 $(function () {
     Boy = $("#Player");
@@ -38,9 +40,26 @@ $(function () {
     highscore = $("#highscore");
     fps = $("#fps");
     canvas = $("#content");
+    RegisterKeyEvents();
+
     StartGame();
     Loop();
 });
+
+function UpdateRecords(){
+    $("tbody").empty();
+    $.ajax({
+        url: "https://arostestapi.azurewebsites.net/api/highscore/",
+        success: function(data){
+            data.sort(function(a,b){
+                return b.highscore - a.highscore;
+            });
+            $(data).each(function(){
+                $("tbody").append("<tr><td>"+this.name+"</td><td>"+ this.highscore +"</td></tr>")
+            });
+        }
+    });
+}
 
 function SetBoyPos(){
     var something = ($(Boy).width() / $(Boy).parent().height() * 100);
@@ -90,16 +109,17 @@ function IncrementHighscore(){
 }
 
 function StartGame(){    
+    $("#submitContainer button").removeAttr("disabled");
+    submitedScore = false;
     gameOver = false;
     CurrentHighscore = 0;
-    $(document).off(); //To fix jump when pressing restart
     CurrentEnemySpawnTimerInMs = StartEnemySpawnTimerInMs;
     SetBoyPos();
     $(".enemy").remove();
     Enemys = $(".enemy");
     $("#try-again").hide();
+    $("#recordsContainer").hide();
     setTimeout(function(){
-        RegisterKeyEvents();
     }, 200);
 }
 
@@ -109,8 +129,15 @@ function Collision() {
         if (collision) {
             gameOver = true;
             $("#try-again").show();
+            ShowRecordsWindow();
         }
     });
+}
+
+function ShowRecordsWindow(){
+    UpdateRecords();
+    $("#finalScore").text($("#highscore").text())
+    $("#recordsContainer").show();
 }
 
 var lastSpawned = Date.now();
@@ -173,16 +200,47 @@ function RegisterKeyEvents() {
     $(document).on("keydown", function (e) {
         //Spacebar
         if (e.keyCode == 32 || e.keyCode == 38 || e.keyCode == 87) {
-            Jump();
-            return false;
+            console.log(e.target == $("input")[0]);
+            if(e.target != $("input")[0]){
+                Jump();
+                return false;
+            }
         }
     });
-    $(document).on("click", function () {
-        Jump();
+    $(canvas).on("click", function (e) {
+        if(e.target == canvas[0]){
+            Jump();
+        }
     });
-    $("#try-again").on("click", function(){
+    $("#try-again").on("click", function(e){
         StartGame();
     });
+    $("#submitContainer input").on("keyup", function(e){
+        if(e.key === "Enter" && !submitedScore){
+            SubmitScore();
+        }
+    })
+    $("#submitContainer button").on("click", function(){
+        SubmitScore();
+    });
+}
+
+function SubmitScore(){
+    $("#submitContainer button").attr("disabled", "disabled");
+        //TODO: Post
+        $.ajax({
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            method: "POST",
+            url: "https://arostestapi.azurewebsites.net/api/highscore/",
+            data: JSON.stringify({name: $("#submitContainer input").val(), highscore: $("#finalScore").text()})
+        }).done(function(){
+            submitedScore = true;
+            UpdateRecords();
+            alert("Gemt!");
+        });
 }
 
 function Jump() {

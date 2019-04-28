@@ -1,10 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 #Player {
   width: 10vw;
   position: absolute;
@@ -19,7 +12,7 @@
 #content #try-again {
   display: none;
   position: absolute;
-  top: 50%;
+  top: 75%;
   left: 50%;
   border: none;
   background-color: green;
@@ -35,8 +28,76 @@
   top: 0;
   border: solid #FF8800 5px;
   border-radius: 5px;
-  padding: 20px 40px;
+  padding: 1% 1%;
   cursor: pointer;
+}
+
+#content div.skinSellector p {
+  text-align: center;
+}
+
+#content #recordsContainer {
+  display: none;
+  background-color: #232323;
+  padding: 13px;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+#content #recordsContainer table {
+  width: 100%;
+}
+
+#content #recordsContainer table thead tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#content #recordsContainer table thead tr th:nth-child(odd) {
+  text-align: left;
+}
+
+#content #recordsContainer table thead tr th:nth-child(even) {
+  text-align: right;
+}
+
+#content #recordsContainer table tbody {
+  display: block;
+  overflow: auto;
+  height: 100px;
+}
+
+#content #recordsContainer table tbody tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#content #recordsContainer table tbody tr td:nth-child(odd) {
+  padding-right: 10%;
+}
+
+#content #recordsContainer table tbody tr td:nth-child(even) {
+  text-align: right;
+}
+
+#content #recordsContainer #submitContainer {
+  padding-top: 20px;
+}
+
+#content #recordsContainer #finalScoreContainer {
+  padding-bottom: 10px;
 }
 
 #Platform {
