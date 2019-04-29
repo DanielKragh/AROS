@@ -12,5 +12,5 @@ $(function(){
         Player.attr("src", skinSrc);
         $(this).attr("src", PlayerSrc);
         
-    })
+    });
 });
